@@ -12,11 +12,11 @@ import { AuthService } from '../../shared/services/auth.service';
 export class RegisterComponent {
   private readonly _Auth = inject(AuthService);
   signupForm = new FormGroup({
-    name: new FormControl(null, Validators.required),
+    name: new FormControl(null, [Validators.required,Validators.minLength(3),Validators.maxLength(20)]),
     email: new FormControl(null, [Validators.required, Validators.email]),
-    password: new FormControl(null, [Validators.required,Validators.pattern(/^[a-zA-Z]\d{3,}$/)]),
+    password: new FormControl(null, [Validators.required,Validators.pattern(/^\w{6,}$/)]),
     age: new FormControl(null, [Validators.required, Validators.pattern(/^\d+$/)]),
-    phone: new FormControl(null, [Validators.required, Validators.pattern(/^\d{11}$/)])
+    phone: new FormControl(null, [Validators.required, Validators.pattern(/^01[0125][0-9]{8}$/)])
   })
   onSubmit(){
     console.log(this.signupForm.value);
