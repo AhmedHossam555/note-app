@@ -28,7 +28,7 @@
                             @if(signupForm.get('email')?.getError('required')){
                                 <p>* Email is required</p>
                             }
-                            @else if(signupForm.get('email')?.getError('pattern')){
+                            @else if(signupForm.get('email')?.getError('email')){
                                 <p>* Email is not valid 
                                 </p>
                             }
