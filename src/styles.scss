@@ -24,6 +24,6 @@ body {
     background: rgba(255,255,255,0.1) !important;
     padding-top: 5rem;
 }
-input[type='submit']:hover {
+button[type='submit']:hover {
     background-color: $second-color !important;
 }
