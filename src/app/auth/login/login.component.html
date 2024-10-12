@@ -1,1 +1,56 @@
-<p>login works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mx-auto pt-5 pb-4">
+            <form action="" [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="py-4 px-4 layer rounded-4 ">
+                <h1 class="text-white text-center mb-4">
+                    Login
+                </h1>
+                @if(errMsg()!==''){
+                    <p class="p-1 text-danger">
+                        * {{errMsg()}}
+                    </p>
+                }
+           
+                <div class="my-3">
+                    <input type="text" formControlName="email" class="form-control" placeholder="Email Address">
+                    @if(loginForm.get('email')?.errors && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)){
+                        <div class="p-1 text-danger">
+                            @if(loginForm.get('email')?.getError('required')){
+                                <p>* Email is required</p>
+                            }
+                            @else if(loginForm.get('email')?.getError('email')){
+                                <p>* Email is not valid 
+                                </p>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="my-3">
+                    <input type="password" formControlName="password" class="form-control" placeholder="Password">
+                    @if(loginForm.get('password')?.errors && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)){
+                        <div class="p-1 text-danger">
+                            @if(loginForm.get('password')?.getError('required')){
+                                <p>* Password is required</p>
+                            }
+                            @else if(loginForm.get('password')?.getError('pattern')){
+                                <p>* Password is not valid less than 6 
+                                </p>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="my-3">
+                    <button type="submit" class="form-control bg-main border-0 text-white" [disabled]="loginForm.invalid || isloading()">
+                        @if(!isloading()){
+                            Login
+                        }
+                        @if(isloading()){
+                            <i class="fa-solid fa-spinner fa-spin"></i>
+                        }
+                    </button>
+                </div>
+                <p>Don't have your account?<span routerLink="/register" class="text-second" style="cursor: pointer;">Register</span> </p>
+            </form>
+        </div>
+    </div>
+</div>
