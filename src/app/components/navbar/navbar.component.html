@@ -15,18 +15,24 @@
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link rounded-4" routerLink="/home" routerLinkActive="actives">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link rounded-4" routerLink="/login" routerLinkActive="actives">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link rounded-4" routerLink="/register" routerLinkActive="actives">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link rounded-4" routerLinkActive="actives" >SignOut</a>
-                </li>
+                @if(isloading()){
+                    <li class="nav-item">
+                        <a class="nav-link rounded-4" routerLink="/home" routerLinkActive="actives">Home</a>
+                    </li>  
+                    <li class="nav-item">
+                        <a class="nav-link rounded-4 " style="cursor: pointer;" (click)="onSignout()"  >SignOut</a>
+                    </li>
+                }
+            
+                @if(!isloading()){
+                    <li class="nav-item">
+                        <a class="nav-link rounded-4" routerLink="/login" routerLinkActive="actives">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link rounded-4" routerLink="/register" routerLinkActive="actives">Register</a>
+                    </li>
+                }
+            
             </ul>
         
         </div>
