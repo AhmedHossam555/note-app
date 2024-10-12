@@ -1,6 +1,7 @@
 import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -14,6 +15,7 @@ export class RegisterComponent {
   errMsg:WritableSignal<string> = signal('');
   
   private readonly _Auth = inject(AuthService);
+  private _Router = inject(Router);
   signupForm = new FormGroup({
     name: new FormControl(null, [Validators.required,Validators.minLength(3),Validators.maxLength(20)]),
     email: new FormControl(null, [Validators.required, Validators.email]),
@@ -29,7 +31,9 @@ export class RegisterComponent {
         if(res.msg === "done"){
           this.isloading.set(false);
           this.signupForm.reset();
-          window.localStorage.setItem('userToken', res.user.password)
+          setTimeout(()=>{
+            this._Router.navigate(['/login']);
+          },1500)
         }
       },
       error:(err)=>{

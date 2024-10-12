@@ -10,7 +10,6 @@
                         * {{errMsg()}}
                     </p>
                 }
-           
                 <div class="my-3">
                     <input type="text" formControlName="email" class="form-control" placeholder="Email Address">
                     @if(loginForm.get('email')?.errors && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)){
