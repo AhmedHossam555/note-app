@@ -83,7 +83,7 @@
                     }
                 </div>
                 <div class="my-3">
-                    <button type="submit" class="form-control bg-main border-0 text-white" [disabled]="signupForm.invalid">
+                    <button type="submit" class="form-control bg-main border-0 text-white" [disabled]="signupForm.invalid || isloading()">
                         @if(!isloading()){
                             Create account
                         }

@@ -27,7 +27,8 @@ export class RegisterComponent {
     this._Auth.signup(this.signupForm.value).subscribe({
       next:(res)=>{
         if(res.msg === "done"){
-          this.isloading.set(false)
+          this.isloading.set(false);
+          this.signupForm.reset();
           window.localStorage.setItem('userToken', res.user.password)
         }
       },
