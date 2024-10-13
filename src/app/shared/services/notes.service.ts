@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Enviroment } from '../base/enviroment/enviroment';
+import { Token } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,14 @@ export class NotesService {
         token: '3b8ny__' + window.localStorage.getItem('userToken')
       }
     })
+  }
+  updateNote(id:string, data:object):Observable<any>{
+    return this._http.put(`${Enviroment.baseUrl}/notes/${id}`,data,
+      {
+        headers:{
+        token: '3b8ny__' + window.localStorage.getItem('userToken')
+      }}
+    )
   }
   deleteNote(id:string):Observable<any>{
     return this._http.delete(`${Enviroment.baseUrl}/notes/${id}`,{

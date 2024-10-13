@@ -29,4 +29,47 @@
                 </div>
             </div>
 
+            <div class="row gap-4 mt-3">
+                @for(note of notesList(); track note._id){
+                    <div class="col-4 bg-white rounded text-secondary p-3 ">
+                        <h5>
+                            {{note.title}}
+                        </h5>
+                        <p>
+                            {{note.content}}
+                        </p>
+                        <div class="d-flex justify-content-between align-content-center text-secondary">
+                            <i class="fa-regular fa-pen-to-square" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#exampleModals" (click)="updateNote(note)"></i>
+                            <img src="../../../assets/image/delete.png" style="cursor: pointer; width: 24px;" alt="delete" (click)="deleteNote(note._id)">
+                        </div>
+                              
+                    </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModals" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title text-second" id="exampleModalLabel">Update Notes</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <form action="" [formGroup]="noteFormUpdate" (ngSubmit)="onSubmitUpdate(note._id)">
+                                <div class="modal-body">
+                                        <input type="text" formControlName="title"  class="form-control my-3" placeholder="Title" >
+                                        <textarea class="form-control" formControlName="content"  placeholder="Content"  ></textarea>
+                                
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn button btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" class="button">Update Note</button>
+                        
+                                </div>
+                            </form>
+                            </div>
+                            </div>
+                        </div>
+
+
+                }
+            </div>
+
 </div>
