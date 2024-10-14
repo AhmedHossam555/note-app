@@ -1,16 +1,19 @@
 import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NotesService } from '../../shared/services/notes.service';
 import { Notes } from '../../shared/interfaces/notes';
+
+import { SearchPipe } from '../../shared/pipes/search.pipe';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, SearchPipe,FormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
   private _NotesService = inject(NotesService);
+  searchValue:string = ''
   notesList:WritableSignal<Notes[]> = signal([]);
   noteForm = new FormGroup({
     title: new FormControl(null, Validators.required),
@@ -62,7 +65,12 @@ export class HomeComponent implements OnInit {
         }
       },
       error:(err)=>{
-        console.log(err)
+        if(err.error.msg ==="not notes found"){
+          console.log("HII");
+          console.log(this.notesList())
+          this.notesList.set([]);
+        }
+        console.log(err);
       }
     })
   }
@@ -72,6 +80,9 @@ export class HomeComponent implements OnInit {
         if(res.msg == "done"){
           this.getNote()
         }
+      },
+      error: (err)=>{
+       
       }
     })
   }

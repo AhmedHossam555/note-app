@@ -1,9 +1,19 @@
 <div class="container p-4">
         <h1 class="d-flex align-items-center text-white"><img src="../../../assets/image/notes.png" style="width: 70px;" alt="notes">Notes</h1>
+       <div class="d-flex align-items-center justify-content-start">
         <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class=" d-flex align-items-center button ">
             <img src="../../../assets/image/edit.png" style="width: 30px" alt="edit">
             Created Notes
         </button>  
+    <div class="search-box mt-4 ms-5">
+        <button class="btn-search"><i class="fas fa-search"></i></button>
+        <input type="text" class="input-search" [(ngModel)]="searchValue"  placeholder="Search by title ...">
+      </div>
+       </div>
+           
+      
+       
+     
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -30,7 +40,7 @@
             </div>
 
             <div class="row gap-4 mt-3">
-                @for(note of notesList(); track note._id){
+                @for(note of notesList() | search:searchValue ; track note._id){
                     <div class="col-4 bg-white rounded text-secondary p-3 ">
                         <h5>
                             {{note.title}}
@@ -71,5 +81,4 @@
 
                 }
             </div>
-
 </div>
