@@ -1,4 +1,33 @@
-# NoteApp
+# Note App
+
+## Description
+
+A simple and intuitive note-taking web application that allows users to create, edit, delete, and organize their notes. The app also includes user authentication for secure access.
+
+## Feature
+
+* User Authentication: Users can register, log in, and log out to securely access their notes with JWT token.
+* Create Notes: Authenticated users can add new notes with a title and description.
+* Edit Notes: Update existing notes with new content.
+* Delete Notes: Remove unwanted notes.
+* Search: Quickly find notes by searching through titles and content  using Pipe filter.
+* Organize Notes: Categorize notes for better organization.
+* Alert Message: Toastr with ngx-toastr.
+* Responsive Design: Fully responsive layout that works on mobile, tablet, and desktop devices.
+* Autosave: Automatically saves notes as you type (optional feature).
+* Persistent Storage: Notes are stored on the server or via API and tied to the authenticated user.
+
+## Technologies Used
+* Frontend Framework: Angular 17
+* Authentication: JWT (JSON Web Tokens) for secure user authentication
+* CSS Framework: Bootstrap ( styling library)
+* Toastr Notifications: For showing success, error, and info messages.
+* Style Lan : Scss(sass)
+
+## Backend Api
+
+Documentation for the backend API can be found [here](https://documenter.getpostman.com/view/24475784/2s9YJW5RJj)
+## NoteApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.
 
