@@ -4,6 +4,7 @@ import { NotesService } from '../../shared/services/notes.service';
 import { Notes } from '../../shared/interfaces/notes';
 
 import { SearchPipe } from '../../shared/pipes/search.pipe';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -13,17 +14,17 @@ import { SearchPipe } from '../../shared/pipes/search.pipe';
 })
 export class HomeComponent implements OnInit {
   private _NotesService = inject(NotesService);
-  searchValue:string = ''
+  private _ToastrService = inject(ToastrService);
+  searchValue:string = '';
   notesList:WritableSignal<Notes[]> = signal([]);
   noteForm = new FormGroup({
     title: new FormControl(null, Validators.required),
     content: new FormControl(null, Validators.required)
-  })
-
+  });
   noteFormUpdate = new FormGroup({
     title: new FormControl(null, Validators.required),
     content: new FormControl(null, Validators.required)
-  })
+  });
   updateNote(note:any){
     this.noteFormUpdate.patchValue(note)
   }
@@ -32,6 +33,12 @@ export class HomeComponent implements OnInit {
       next:(res)=>{
         if(res.msg === "done"){
           this.getNote();
+          this._ToastrService.success('Note updated successfully','',{
+            timeOut: 1500,
+            progressBar: true,
+            progressAnimation: 'increasing',
+            extendedTimeOut: 300,
+          })
         }
       },
       error:(err)=>{
@@ -48,6 +55,12 @@ export class HomeComponent implements OnInit {
         if(res.msg == "done"){
           this.noteForm.reset();
           this.getNote();
+          this._ToastrService.success('Note added successfully','',{
+            timeOut: 1500,
+            progressBar: true,
+            progressAnimation: 'increasing',
+            extendedTimeOut: 300,
+          })
         }
       },
       error: (err)=>{
@@ -78,7 +91,13 @@ export class HomeComponent implements OnInit {
     this._NotesService.deleteNote(id).subscribe({
       next:(res)=>{
         if(res.msg == "done"){
-          this.getNote()
+          this.getNote();
+          this._ToastrService.success('Note deleted successfully','',{
+            timeOut: 1500,
+            progressBar: true,
+            progressAnimation: 'increasing',
+            extendedTimeOut: 300,
+          })
         }
       },
       error: (err)=>{

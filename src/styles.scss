@@ -39,4 +39,11 @@ button[type='submit']:hover {
     color: white;
     margin-top: 25px;
 }
-
+.toast-success {
+    background: linear-gradient(#9418fd, #571094) !important;
+    color: #fff !important;
+}
+.toast-progress {
+    background-color: white !important; 
+    height: 5px !important;             
+}
